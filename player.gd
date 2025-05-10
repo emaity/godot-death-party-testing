@@ -9,12 +9,12 @@ signal player_interacted
 var player_velocity := Vector3.ZERO
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		player_interacted.emit()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Direction of movement in the X axis
 	var movement_direction: int = 0
 	if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"):

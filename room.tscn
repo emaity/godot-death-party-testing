@@ -1,4 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq5jfkrm6vs80"]
+[gd_scene load_steps=5 format=3 uid="uid://bq5jfkrm6vs80"]
+
+[ext_resource type="Script" uid="uid://c3rpd8u8anwf1" path="res://room.gd" id="1_bisa2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bisa2"]
+size = Vector3(10, 6.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v321d"]
 size = Vector3(10, 1, 1)
@@ -6,9 +11,37 @@ size = Vector3(10, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_88gup"]
 size = Vector3(10, 1, 1)
 
-[node name="Room" type="Node3D"]
+[node name="Room" type="Area3D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_bisa2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+shape = SubResource("BoxShape3D_bisa2")
+debug_color = Color(1, 0.0212546, 0.621862, 1)
+
+[node name="RoomCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
+fov = 90.0
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_v321d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling/CollisionShape3D"]
+mesh = SubResource("BoxMesh_88gup")
+skeleton = NodePath("../../..")
 
 [node name="Floor" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_v321d")
@@ -17,13 +50,5 @@ shape = SubResource("BoxShape3D_v321d")
 mesh = SubResource("BoxMesh_88gup")
 skeleton = NodePath("../../..")
 
-[node name="Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.94021, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
-shape = SubResource("BoxShape3D_v321d")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-mesh = SubResource("BoxMesh_88gup")
-skeleton = NodePath("../../..")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

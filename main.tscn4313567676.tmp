@@ -12,15 +12,14 @@ size = Vector3(10, 1, 1)
 [node name="Main" type="Node3D"]
 
 [node name="Room" parent="." instance=ExtResource("1_ig7tw")]
-collision_layer = 2
-collision_mask = 1
+collision_layer = 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -0.194082, 4.01692, 3.53107)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45861, 1.51741, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45861, 1.51741, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
@@ -34,4 +33,4 @@ shape = SubResource("BoxShape3D_0xm2m")
 mesh = SubResource("BoxMesh_h2yge")
 skeleton = NodePath("../../..")
 
-[connection signal="body_entered" from="Room" to="Player" method="_on_room_body_entered"]
+[connection signal="player_entered" from="Room" to="Player" method="_on_room_player_entered"]
