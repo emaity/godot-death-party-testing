@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal player_interacted
+signal player_move_up
 
 @export var gravity: float = 2.0
 @export var player_speed: float = 3.0
@@ -8,10 +9,14 @@ signal player_interacted
 
 var player_velocity := Vector3.ZERO
 
+func _ready() -> void:
+	$PlayerCamera.make_current()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		player_interacted.emit()
+	if Input.is_action_just_pressed("move_up"):
+		player_move_up.emit()
 
 
 func _physics_process(_delta: float) -> void:
@@ -25,8 +30,12 @@ func _physics_process(_delta: float) -> void:
 		movement_direction = 1
 	
 	# Jump
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		player_velocity.y = jump_power
+	if is_on_floor():
+		if Input.is_action_just_pressed("jump"):
+			player_velocity.y = jump_power
+		else:
+			# This line only exists to make slopes work after the player jumps
+			player_velocity.y = 0
 	
 	# Move on x axis
 	player_velocity.x = movement_direction * player_speed

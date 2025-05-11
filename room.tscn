@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bq5jfkrm6vs80"]
 
-[ext_resource type="Script" uid="uid://c3rpd8u8anwf1" path="res://room.gd" id="1_bisa2"]
+[ext_resource type="Script" uid="uid://c3rpd8u8anwf1" path="res://scripts/room.gd" id="1_bisa2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bisa2"]
-size = Vector3(10, 6.5, 1)
+size = Vector3(8, 6.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v321d"]
 size = Vector3(10, 1, 1)
@@ -23,8 +23,7 @@ shape = SubResource("BoxShape3D_bisa2")
 debug_color = Color(1, 0.0212546, 0.621862, 1)
 
 [node name="RoomCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
-fov = 90.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
 
 [node name="Ceiling" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -49,6 +48,3 @@ shape = SubResource("BoxShape3D_v321d")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
 mesh = SubResource("BoxMesh_88gup")
 skeleton = NodePath("../../..")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

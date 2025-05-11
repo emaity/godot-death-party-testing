@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b775wvigqexbq"]
+
+[ext_resource type="Script" uid="uid://gkfxsv8ng3rc" path="res://stairs_left.gd" id="1_sfwic"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sdf1a"]
+size = Vector3(1, 9.192, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_sdf1a"]
+left_to_right = 0.0
+size = Vector3(6.5, 6.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sfwic"]
+size = Vector3(2.0874, 2.43933, 3)
+
+[node name="StairsLeft" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_sfwic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -3.603, 2.896, 0)
+shape = SubResource("BoxShape3D_sdf1a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.25, 0)
+layers = 3
+mesh = SubResource("PrismMesh_sdf1a")
+
+[node name="PlayerClimbPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33825, 0)
+
+[node name="PlayerDetector" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0437, 1.21967, 1)
+shape = SubResource("BoxShape3D_sfwic")
