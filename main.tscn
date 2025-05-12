@@ -4,57 +4,57 @@
 [ext_resource type="PackedScene" uid="uid://b8kaqd0dtqsp1" path="res://player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b775wvigqexbq" path="res://stairs_left.tscn" id="2_h2yge"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-size = Vector3(10, 1, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(5, 0.5, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
-size = Vector3(10, 1, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+size = Vector3(5, 0.5, 1)
 
 [node name="Main" type="Node3D"]
-
-[node name="Player" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45861, 1.51741, 0)
-floor_constant_speed = true
-
-[node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_0xm2m")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
-mesh = SubResource("BoxMesh_h2yge")
-skeleton = NodePath("../../..")
-
-[node name="Room" parent="." instance=ExtResource("1_ig7tw")]
-collision_layer = 2
-collision_mask = 1
-
-[node name="Floor2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
-shape = SubResource("BoxShape3D_0xm2m")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2/CollisionShape3D"]
-mesh = SubResource("BoxMesh_h2yge")
-skeleton = NodePath("../..")
-
-[node name="Room2" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
-collision_layer = 2
-collision_mask = 1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -0.194082, 4.01692, 3.53107)
 shadow_enabled = true
 
-[node name="StairsLeft" parent="." instance=ExtResource("2_h2yge")]
+[node name="Player" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.444, 0.75, 0)
+floor_constant_speed = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.25, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_1bvp3")
+skeleton = NodePath("../..")
+
+[node name="Room" parent="." instance=ExtResource("1_ig7tw")]
+collision_layer = 2
+collision_mask = 1
+
+[node name="StairsLeft" parent="Room" instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54139, -0.48259, -1)
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.25, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2"]
+mesh = SubResource("BoxMesh_1bvp3")
+skeleton = NodePath("../..")
+
+[node name="Room2" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+collision_layer = 2
+collision_mask = 1
 
 [connection signal="body_entered" from="Room" to="Player" method="_on_room_body_entered"]
 [connection signal="body_entered" from="Room2" to="Player" method="_on_room_body_entered"]

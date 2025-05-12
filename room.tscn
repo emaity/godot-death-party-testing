@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://c3rpd8u8anwf1" path="res://scripts/room.gd" id="1_bisa2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bisa2"]
-size = Vector3(8, 6.5, 1)
+size = Vector3(14, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v321d"]
-size = Vector3(10, 1, 1)
+size = Vector3(15, 0.5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_88gup"]
-size = Vector3(10, 1, 1)
+size = Vector3(15, 0.5, 1)
 
 [node name="Room" type="Area3D"]
 collision_layer = 0
@@ -18,33 +18,21 @@ monitorable = false
 script = ExtResource("1_bisa2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_bisa2")
 debug_color = Color(1, 0.0212546, 0.621862, 1)
 
 [node name="RoomCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
 
-[node name="Ceiling" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_v321d")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling/CollisionShape3D"]
-mesh = SubResource("BoxMesh_88gup")
-skeleton = NodePath("../../..")
-
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_v321d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_88gup")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")

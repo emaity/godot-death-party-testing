@@ -1,7 +1,7 @@
 extends StaticBody3D
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if $PlayerEntranceDetector.has_overlapping_bodies():
 		var player: CharacterBody3D = $PlayerEntranceDetector.get_overlapping_bodies()[0]
 		if Input.is_action_just_pressed("move_up") and round(player.global_position.z) != -1:
