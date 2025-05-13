@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://btdxsedihjw8m" path="res://scripts/player.gd" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
-height = 1.5
+radius = 0.4
+height = 1.6
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
-height = 1.5
+radius = 0.4
+height = 1.6
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 2
@@ -18,6 +20,5 @@ shape = SubResource("CapsuleShape3D_sh265")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4flbx")
 
-[node name="PlayerCamera" type="Camera3D" parent="."]
+[node name="PlayerCameraLocation" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 6)
-size = 5.0

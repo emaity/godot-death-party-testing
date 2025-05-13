@@ -15,6 +15,10 @@ run/main_scene="uid://bcbpgaqf020eb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MainCamera="*res://global_scripts/main_camera.gd"
+
 [input]
 
 move_left={

@@ -9,8 +9,6 @@ signal player_move_up
 
 var player_velocity := Vector3.ZERO
 
-func _ready() -> void:
-	$PlayerCamera.make_current()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
