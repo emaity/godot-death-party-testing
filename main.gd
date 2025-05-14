@@ -1,10 +1,12 @@
 extends Node3D
 
-var CAMERA_FOLLOW_SPEED: float = 2.5
+var PLAYER_CAMERA_FOLLOW_SPEED: float = 3.5
+var ROOM_CAMERA_TRANSITION_SPEED: float = 2
 
 # Holds the global position of where we want the main camera to go
 var camera_location := Vector3.ZERO
 var player_in_room: bool = false
+var camera_speed: float = PLAYER_CAMERA_FOLLOW_SPEED
 
 # Constantly moves the camera's location
 func _ready() -> void:
@@ -17,12 +19,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not player_in_room:
+		camera_speed = PLAYER_CAMERA_FOLLOW_SPEED
 		camera_location = $Player/PlayerCameraLocation.global_position
-	$MainCamera.global_position = $MainCamera.global_position.lerp(camera_location, delta * CAMERA_FOLLOW_SPEED)
+	
+	$MainCamera.global_position = $MainCamera.global_position.lerp(camera_location, delta * camera_speed)
 
 
 func _move_camera(new_pos: Vector3):
-	print(new_pos)
+	camera_speed = ROOM_CAMERA_TRANSITION_SPEED
 	camera_location = new_pos
 
 func _change_room_state(is_in_room: bool):
