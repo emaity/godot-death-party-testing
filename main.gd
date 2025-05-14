@@ -16,6 +16,7 @@ func _ready() -> void:
 	
 	GlobalCameraScript.move_camera_smooth.connect(_move_camera_smooth)
 	GlobalCameraScript.move_camera_jump.connect(_move_camera_jump)
+	GlobalCameraScript.change_current_camera.connect(_change_camera)
 	GlobalCameraScript.camera_on_player.connect(_change_camera_state)
 
 
@@ -39,6 +40,10 @@ func _move_camera_smooth(new_pos: Vector3):
 func _move_camera_jump(new_pos: Vector3):
 	camera_smooth = false
 	camera_location = new_pos
+
+
+func _change_camera(new_camera: Camera3D):
+	new_camera.make_current()
 
 
 func _change_camera_state(tf: bool):
