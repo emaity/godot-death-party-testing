@@ -3,6 +3,11 @@ extends Area3D
 
 signal player_present(new_camera_location: Vector3)
 
-func _physics_process(_delta: float) -> void:
-	if has_overlapping_bodies():
-		player_present.emit($RoomCameraLocation.global_position)
+
+func _on_body_entered(_body: Node3D) -> void:
+	GlobalCameraScript.change_camera_position.emit($RoomCameraLocation.global_position)
+	GlobalCameraScript.player_in_room.emit(true)
+
+
+func _on_body_exited(_body: Node3D) -> void:
+	GlobalCameraScript.player_in_room.emit(false)
