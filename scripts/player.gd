@@ -1,19 +1,10 @@
 extends CharacterBody3D
 
-signal player_move_up
-
 @export var gravity: float = 2.0
 @export var player_speed: float = 3.0
 @export var jump_power: float = 12.0
 
 var player_velocity := Vector3.ZERO
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
-		GlobalPlayerAction.player_interacted.emit()
-	if Input.is_action_just_pressed("move_up"):
-		player_move_up.emit()
 
 
 func _physics_process(_delta: float) -> void:

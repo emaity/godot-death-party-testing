@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalCameraScript="*res://global_scripts/global_camera_script.gd"
-GlobalPlayerAction="*res://global_scripts/global_player_action.gd"
 
 [input]
 

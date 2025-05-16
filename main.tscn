@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcbpgaqf020eb"]
+[gd_scene load_steps=8 format=3 uid="uid://bcbpgaqf020eb"]
 
 [ext_resource type="Script" uid="uid://dgm2vkm51m46i" path="res://scripts/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq5jfkrm6vs80" path="res://room.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b8kaqd0dtqsp1" path="res://player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b775wvigqexbq" path="res://stairs_left.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dt7ee2u4kdoy1" path="res://interaction_detector.tscn" id="5_lquwl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
 size = Vector3(5, 0.5, 1)
@@ -60,6 +61,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
 collision_layer = 2
 collision_mask = 1
+
+[node name="InteractionDetector" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
 
 [connection signal="body_entered" from="Room" to="Player" method="_on_room_body_entered"]
 [connection signal="body_entered" from="Room2" to="Player" method="_on_room_body_entered"]

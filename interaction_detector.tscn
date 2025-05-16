@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt7ee2u4kdoy1"]
+[gd_scene load_steps=3 format=3 uid="uid://dt7ee2u4kdoy1"]
+
+[ext_resource type="Script" uid="uid://b1mm1k5t7p64i" path="res://scripts/interaction_detector.gd" id="1_ks6yy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s20qi"]
 
 [node name="InteractionDetector" type="Area3D"]
+collision_layer = 0
+script = ExtResource("1_ks6yy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_s20qi")
-debug_color = Color(0.952941, 0.254902, 0.0509804, 0.45098)
+debug_color = Color(0.933333, 0.258824, 0, 1)
