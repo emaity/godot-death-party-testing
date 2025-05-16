@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt7ee2u4kdoy1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s20qi"]
+
+[node name="InteractionDetector" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_s20qi")
+debug_color = Color(0.952941, 0.254902, 0.0509804, 0.45098)

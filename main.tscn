@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bcbpgaqf020eb"]
 
-[ext_resource type="Script" uid="uid://dgm2vkm51m46i" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://dgm2vkm51m46i" path="res://scripts/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq5jfkrm6vs80" path="res://room.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b8kaqd0dtqsp1" path="res://player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b775wvigqexbq" path="res://stairs_left.tscn" id="2_h2yge"]
@@ -42,7 +42,7 @@ collision_layer = 2
 collision_mask = 1
 
 [node name="StairsLeft" parent="Room" instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.541, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.459, 0, -1)
 
 [node name="Floor2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -0.25, 0)
