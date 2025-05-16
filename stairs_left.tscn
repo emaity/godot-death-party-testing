@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b775wvigqexbq"]
 
 [ext_resource type="Script" uid="uid://gkfxsv8ng3rc" path="res://scripts/stairs_left.gd" id="1_sfwic"]
+[ext_resource type="PackedScene" uid="uid://3dt1w7lckdyq" path="res://interaction_detector.tscn" id="2_52upt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdf1a"]
 size = Vector3(1, 4.94934, 1)
@@ -9,11 +10,8 @@ size = Vector3(1, 4.94934, 1)
 left_to_right = 0.0
 size = Vector3(3.5, 3.5, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_sfwic"]
-radius = 1.15042
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_52upt"]
-radius = 1.15
+[sub_resource type="BoxShape3D" id="BoxShape3D_ojr35"]
+size = Vector3(1.4, 1.4, 1.4)
 
 [node name="StairsLeft" type="StaticBody3D"]
 collision_layer = 2
@@ -28,25 +26,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.75, 0)
 layers = 3
 mesh = SubResource("PrismMesh_sdf1a")
 
-[node name="PlayerEntranceDetector" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458, 0.895, 0.5)
-collision_layer = 0
+[node name="InteractionDetectorTop" parent="." instance=ExtResource("2_52upt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05988, 3.95674, 0.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerEntranceDetector"]
-shape = SubResource("SphereShape3D_sfwic")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionDetectorTop"]
+shape = SubResource("BoxShape3D_ojr35")
+debug_color = Color(0.917647, 0.286275, 0, 1)
 
-[node name="PlayerEntrancePoint" type="Node3D" parent="."]
+[node name="TopEntrance" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00507, 4.30019, 0)
+
+[node name="TopReturnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 1)
+
+[node name="BottomEntrance" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325764, 1.29638, 0)
 
-[node name="PlayerEntranceReturnPoint" type="Node3D" parent="."]
+[node name="BottomReturnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.415386, 0.97153, 1)
 
-[node name="PlayerExitDetector" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.026, 3.533, 0.5)
-collision_layer = 0
+[node name="InteractionDetectorBottom" parent="." instance=ExtResource("2_52upt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.108416, 0.484375, 0.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerExitDetector"]
-shape = SubResource("SphereShape3D_52upt")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionDetectorBottom"]
+shape = SubResource("BoxShape3D_ojr35")
+debug_color = Color(0.917647, 0.286275, 0, 1)
 
-[node name="PlayerExitPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00507, 4.30019, 1)
+[connection signal="body_entered" from="InteractionDetectorTop" to="." method="_on_interaction_detector_top_body_entered"]
+[connection signal="player_interacted" from="InteractionDetectorTop" to="." method="_on_interaction_detector_top_player_interacted"]
+[connection signal="body_entered" from="InteractionDetectorBottom" to="." method="_on_interaction_detector_bottom_body_entered"]
+[connection signal="player_interacted" from="InteractionDetectorBottom" to="." method="_on_interaction_detector_bottom_player_interacted"]
