@@ -1,6 +1,7 @@
 extends Area3D
 
-@export var camera_x_offset: float = 4.33
+# camera_x_offset must be changed MANUALLY if the MainCamera's default position or fov change
+@export var camera_x_offset: float = 3.8
 var left_bound: float
 var right_bound: float
 

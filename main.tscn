@@ -46,7 +46,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.444, 0.815264, 0)
 floor_constant_speed = true
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.444, 2.06526, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.444, 2.065, 8.6)
+fov = 35.0
 
 [node name="NPC" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.184765, -1)
