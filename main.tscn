@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcbpgaqf020eb"]
+[gd_scene load_steps=18 format=3 uid="uid://bcbpgaqf020eb"]
 
 [ext_resource type="Script" uid="uid://dgm2vkm51m46i" path="res://scripts/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq5jfkrm6vs80" path="res://room.tscn" id="1_ig7tw"]
@@ -26,13 +26,15 @@ size = Vector3(11, 0.5, 1)
 size = Vector3(11, 0.5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_272bh"]
-size = Vector3(0.3, 4.475, 1)
+size = Vector3(0.3, 2.865, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
 size = Vector3(10.404, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
 size = Vector3(0.29834, 4.47375, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_272bh"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_1bvp3")
@@ -71,7 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, 0)
 shape = SubResource("BoxShape3D_kek77")
 
 [node name="ConversationCameraPosition" type="Node3D" parent="NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0307369, 2.24149, 4.36605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24974, 7.6)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, -0.25, 0)
@@ -110,7 +112,7 @@ collision_layer = 0
 script = ExtResource("7_272bh")
 
 [node name="wall2" type="MeshInstance3D" parent="CameraArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38166, 0.662455, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38166, -0.0723176, 0)
 mesh = SubResource("BoxMesh_272bh")
 skeleton = NodePath("../StaticBody3D/wall")
 
@@ -118,7 +120,7 @@ skeleton = NodePath("../StaticBody3D/wall")
 shape = SubResource("BoxShape3D_7mycd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CameraArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.36634, 0.74366, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.36634, -0.0630813, 0)
 collision_layer = 2
 collision_mask = 0
 
@@ -128,6 +130,10 @@ skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraArea/StaticBody3D"]
 shape = SubResource("BoxShape3D_272bh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraArea"]
+transform = Transform3D(0.809357, 0.0798871, 0.581859, 0.380745, 0.682958, -0.623378, -0.447185, 0.726076, 0.522341, 1.76686, 0.222942, -0.983459)
+mesh = SubResource("PrismMesh_272bh")
 
 [connection signal="body_entered" from="Room" to="Player" method="_on_room_body_entered"]
 [connection signal="body_entered" from="CameraArea" to="CameraArea" method="_on_body_entered"]

@@ -6,6 +6,10 @@ var left_bound: float
 var right_bound: float
 
 func _ready() -> void:
+	# [.....|.....] <= $CollisionShape3D.shape.size.x ( '|' is halfway point)
+	# [.....|       <= $CollisionShape3D.shape.size.x/2
+	# [.x...|       <= $CollisionShape3D.shape.size.x/2 - camera_x_offset
+	#   x...|       <= Where the camera is limited to go
 	camera_x_offset = $CollisionShape3D.shape.size.x/2 - camera_x_offset
 	left_bound = global_position.x - camera_x_offset
 	right_bound = global_position.x + camera_x_offset

@@ -19,24 +19,26 @@ func _ready() -> void:
 	
 	GlobalCameraScript.move_camera_smooth.connect(_move_camera_smooth)
 	GlobalCameraScript.move_camera_jump.connect(_move_camera_jump)
-	GlobalCameraScript.change_current_camera.connect(_change_camera)
+	GlobalCameraScript.change_current_camera.connect(_change_current_camera)
 	GlobalCameraScript.camera_on_player.connect(_change_camera_state)
 	GlobalCameraScript.bind_camera_x.connect(_bind_camera_x)
 	GlobalCameraScript.remove_camera_bounds_x.connect(_unbind_camera_x)
 
 
 func _physics_process(delta: float) -> void:
+	# make camera follow player
 	if camera_on_player:
 		camera_speed = PLAYER_CAMERA_FOLLOW_SPEED
 		camera_location = $Player/PlayerCameraLocation.global_position
 	
+	# restrict x values of camera
 	if camera_bound_x:
 		if camera_location.x < camera_left_bound_x:
 			camera_location.x = camera_left_bound_x
 		elif camera_location.x > camera_right_bound_x:
 			camera_location.x = camera_right_bound_x
 	
-	
+	# camera either moves smoothly or jumps to the next position
 	if camera_smooth:
 		$MainCamera.global_position = $MainCamera.global_position.lerp(camera_location, delta * camera_speed)
 	else:
@@ -54,7 +56,7 @@ func _move_camera_jump(new_pos: Vector3):
 	camera_location = new_pos
 
 
-func _change_camera(new_camera: Camera3D):
+func _change_current_camera(new_camera: Camera3D):
 	new_camera.make_current()
 
 
